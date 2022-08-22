@@ -1,0 +1,512 @@
+@import 'libs/vars';
+@import 'libs/functions';
+@import 'libs/mixins';
+@import 'libs/vendor';
+@import 'libs/breakpoints';
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;0,900;1,400;1,500;1,700;1,900&display=swap');
+
+// Breakpoints.
+@include breakpoints((wide: (1281px, 1680px),
+        normal: (737px, 1280px),
+        mobile: (481px, 736px),
+        mobilep: (null, 480px)));
+
+// Mixins.
+@mixin bg($width) {
+    @include keyframes('bg') {
+        0% {
+            @include vendor('transform', 'translate3d(0,0,0)');
+        }
+
+        100% {
+            @include vendor('transform', 'translate3d(#{$width * -1},0,0)');
+        }
+    }
+
+    #bg {
+        background-size: $width auto;
+        width: ($width * 3);
+    }
+}
+
+$delay-wrapper: _duration(wrapper) - 1s;
+$delay-header: 1s;
+$delay-nav-icons: $delay-header+_duration(header) - 1s;
+$delay-nav-icon: 0.25s;
+
+// Reset.
+// Based on meyerweb.com/eric/tools/css/reset (v2.0 | 20110126 | License: public domain)
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+    display: block;
+}
+
+body {
+    line-height: 1;
+}
+
+ol,
+ul {
+    list-style: none;
+}
+
+blockquote,
+q {
+    quotes: none;
+
+    &:before,
+    &:after {
+        content: '';
+        content: none;
+    }
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+body {
+    -webkit-text-size-adjust: none;
+}
+
+mark {
+    background-color: transparent;
+    color: inherit;
+}
+
+input::-moz-focus-inner {
+    border: 0;
+    padding: 0;
+}
+
+input,
+select,
+textarea {
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    -ms-appearance: none;
+    appearance: none;
+}
+
+/* Basic */
+// Set box model to border-box.
+// Based on css-tricks.com/inheriting-box-sizing-probably-slightly-better-best-practice
+html {
+    box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
+body {
+    background: _palette(bg);
+    overflow: hidden;
+
+    // Stops initial animations until page loads.
+    &.is-preload {
+
+        *,
+        *:before,
+        *:after {
+            @include vendor('animation', 'none !important');
+            @include vendor('transition', 'none !important');
+        }
+    }
+
+}
+
+body,
+input,
+select,
+textarea {
+    color: _palette(fg);
+    font-family: 'Roboto', sans-serif;
+    font-size: 15pt;
+    line-height: 1.5;
+}
+
+a {
+    color: inherit;
+    outline: 0;
+    text-decoration: none;
+
+    &:hover {
+        border-color: transparent;
+    }
+}
+/* Text */
+.text{
+	&--black{
+		color:$black
+	}
+	&--normal{
+		font-size: 1em;
+	}
+	&--vertical{
+		position: absolute;
+        left: -5em;
+		transform: rotate(-90deg);
+	}
+}
+/* Icon */
+.icon{
+    &--mail{
+        background: url(images/iconMail.svg) no-repeat 0 0.5em;
+        background-size: 100%;
+    }
+    &--LinkedIn{
+        width: 2.5em;
+        height: 2.5em;
+        background: url(images/iconLinkedIn.svg) no-repeat 0 0;
+        background-size: 100%;
+    }
+}
+
+/* Link */
+.link{
+    &--connect{
+        width: 3em;
+        height: 3em;
+        display: inline-block;
+        margin-right: 1.5em;
+    }
+}
+
+/* List */
+.list{
+    width: 50%;
+    display:flex;
+    flex-flow: row wrap;
+
+    &-item::before{
+        content:'- ';
+    }
+    &-item{
+        padding-right: 4em;
+        font-size: 1.2em;
+    }
+    &-item:nth-child(3){
+        padding-right: 1.4em;
+    }
+}
+/* Wrapper */
+@include keyframes('wrapper') {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+#wrapper {
+    @include vendor('animation', 'wrapper #{_duration(wrapper)} forwards');
+    height: 100%;
+    left: 0;
+    opacity: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+
+/* BG */
+#bg {
+    @include vendor('animation', 'bg #{_duration(bg)} linear infinite');
+    @include vendor('backface-visibility', 'hidden');
+    @include vendor('transform', 'translate3d(0,0,0)');
+
+    /* Set your background with this */
+    background: _misc(bg);
+
+    background-repeat: repeat-x;
+    height: 100%;
+    left: 0;
+    opacity: 1;
+    position: fixed;
+    top: 0;
+}
+
+@include bg(_misc(bg-width) * 1.5);
+
+/* Main */
+#main {
+    width: 100%;
+    height: 100%;
+    left: 0;
+    position: fixed;
+    top: 0;
+
+}
+
+/* Header */
+@include keyframes('header') {
+    0% {
+        @include vendor('transform', 'translate3d(0,1em,0)');
+        opacity: 0;
+    }
+
+    100% {
+        @include vendor('transform', 'translate3d(0,0,0)');
+        opacity: 1;
+    }
+}
+
+@include keyframes('nav-icons') {
+    0% {
+        @include vendor('transform', 'translate3d(0,1em,0)');
+        opacity: 0;
+    }
+
+    100% {
+        @include vendor('transform', 'translate3d(0,0,0)');
+        opacity: 1;
+    }
+}
+
+#header {
+    @include vendor('animation', 'header #{_duration(header)} #{$delay-header} forwards');
+    @include vendor('backface-visibility', 'hidden');
+    @include vendor('transform', 'translate3d(0,0,0)');
+	width: 90%;
+	position: relative;
+	padding: 30px;
+    cursor: default;
+    opacity: 0;
+    
+}
+
+/* content */
+.content{
+	width: 100%;
+	height: 100%;
+	display: flex;
+	flex-flow: column nowrap;
+	justify-content: center;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+h1 {
+    font-size: 4.35em;
+    font-weight: 500;
+	font-style: italic;
+    line-height: 1.5;
+}
+
+.logo {
+    width: 240px;
+    height: 96px;
+    background: url(images/logo.svg) no-repeat 0 0;
+    background-size: 100%;
+}
+.info{
+	width: 70%;
+    display: flex;
+    flex-flow: column nowrap;
+    position: absolute;
+    top: 18em;
+    left: 10em;
+}
+.linkAera{
+    position: absolute;
+    bottom: 5em;
+    right: 5em;
+}
+/* Wide */
+@include breakpoint('<=wide') {
+    /* Basic */
+    body,
+    input,
+    select,
+    textarea {
+        font-size: 13pt;
+    }
+
+    /* BG */
+
+    @include bg(_misc(bg-width));
+
+}
+
+/* Normal */
+@include breakpoint('<=normal') {
+    /* Basic */
+    body,
+    input,
+    select,
+    textarea {
+        font-size: 12pt;
+    }
+
+    /* BG */
+    @include bg(_misc(bg-width) * 1);
+
+}
+
+/* Mobile */
+
+@include breakpoint('<=mobile') {
+    /* Basic */
+    body {
+        min-width: 320px;
+    }
+
+    body,
+    input,
+    select,
+    textarea {
+        font-size: 11pt;
+    }
+
+    /* BG */
+    @include bg(_misc(bg-width) * 1);
+
+    /* Content */
+    p {
+        font-size: 1em;
+    }
+
+}
+
+/* Mobile (Portrait) */
+@include breakpoint('<=mobilep') {
+
+    /* BG */
+    @include bg(_misc(bg-width) * 1);
+
+    /* Content */
+    .info{
+        top: 12em;
+        left: auto;
+        right: 0;
+    }
+    h1 {
+        font-size: 3em;
+        line-height: 1;
+        padding-bottom: 0.5em;
+    }
+
+   
+
+}
+/* Portrait */
+@media screen and (orientation: portrait){
+    /* List */
+    .list{
+        width: 100%;
+    }
+    /* Content */
+    .info{
+        width:50%;
+        top: 12em;
+        left: auto;
+        right: 0;
+    }
+    h1 {
+        line-height: 1;
+        padding-bottom: 0.5em;
+    }
+}
