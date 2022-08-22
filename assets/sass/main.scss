@@ -410,14 +410,13 @@ h1 {
     top: 18em;
     left: 10em;
 }
-.linkAera{
+.linkArea{
     position: absolute;
     bottom: 5em;
     right: 5em;
 }
-/* Wide */
+/* Wide 1281-1680*/
 @include breakpoint('<=wide') {
-    /* Basic */
     body,
     input,
     select,
@@ -425,15 +424,12 @@ h1 {
         font-size: 13pt;
     }
 
-    /* BG */
-
     @include bg(_misc(bg-width));
 
 }
 
-/* Normal */
+/* Normal 737-1280*/
 @include breakpoint('<=normal') {
-    /* Basic */
     body,
     input,
     select,
@@ -441,19 +437,21 @@ h1 {
         font-size: 12pt;
     }
 
-    /* BG */
     @include bg(_misc(bg-width) * 1);
+
+    h1{
+        line-height: 1;
+        padding-bottom: 0.3em;
+    }
+
+    .list{
+        width: 80%;
+    }
 
 }
 
-/* Mobile */
-
+/* Mobile 481-736*/ 
 @include breakpoint('<=mobile') {
-    /* Basic */
-    body {
-        min-width: 320px;
-    }
-
     body,
     input,
     select,
@@ -465,48 +463,54 @@ h1 {
     @include bg(_misc(bg-width) * 1);
 
     /* Content */
-    p {
-        font-size: 1em;
-    }
-
-}
-
-/* Mobile (Portrait) */
-@include breakpoint('<=mobilep') {
-
-    /* BG */
-    @include bg(_misc(bg-width) * 1);
-
-    /* Content */
     .info{
-        top: 12em;
+        width: 50%;
+        top: 11em;
         left: auto;
         right: 0;
     }
     h1 {
-        font-size: 3em;
-        line-height: 1;
-        padding-bottom: 0.5em;
+        font-size: 4em;
+        line-height: 1.1;
+        padding-bottom: 0.3em;
     }
-
-   
-
-}
-/* Portrait */
-@media screen and (orientation: portrait){
-    /* List */
     .list{
         width: 100%;
+        flex-flow: column nowrap;
+        &-item{
+            padding-right: 0;
+        }
     }
-    /* Content */
+    .linkArea{
+        right:1em;
+    }
+
+}
+
+@media only screen and (max-width: 480px) and (orientation: portrait) {
+
+    @include bg(_misc(bg-width) * 1);
+
     .info{
-        width:50%;
+        width: 50%;
         top: 12em;
         left: auto;
         right: 0;
     }
     h1 {
-        line-height: 1;
-        padding-bottom: 0.5em;
+        font-size: 3.2em;
+        line-height: 1.1;
+        padding-bottom: 0.3em;
     }
+    .list{
+        width: 100%;
+        flex-flow: column nowrap;
+        &-item{
+            padding-right: 0;
+        }
+    }
+    .linkArea{
+        right:1em;
+    }
+    
 }

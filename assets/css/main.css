@@ -404,22 +404,20 @@ h1 {
   left: 10em;
 }
 
-.linkAera {
+.linkArea {
   position: absolute;
   bottom: 5em;
   right: 5em;
 }
 
-/* Wide */
+/* Wide 1281-1680*/
 @media screen and (max-width: 1680px) {
-  /* Basic */
   body,
 input,
 select,
 textarea {
     font-size: 13pt;
   }
-  /* BG */
   @-webkit-keyframes bg {
     0% {
       transform: translate3d(0,0,0);
@@ -441,16 +439,14 @@ textarea {
     width: 6000px;
   }
 }
-/* Normal */
+/* Normal 737-1280*/
 @media screen and (max-width: 1280px) {
-  /* Basic */
   body,
 input,
 select,
 textarea {
     font-size: 12pt;
   }
-  /* BG */
   @-webkit-keyframes bg {
     0% {
       transform: translate3d(0,0,0);
@@ -471,13 +467,16 @@ textarea {
     background-size: 2000px auto;
     width: 6000px;
   }
-}
-/* Mobile */
-@media screen and (max-width: 736px) {
-  /* Basic */
-  body {
-    min-width: 320px;
+  h1 {
+    line-height: 1;
+    padding-bottom: 0.3em;
   }
+  .list {
+    width: 80%;
+  }
+}
+/* Mobile 481-736*/
+@media screen and (max-width: 736px) {
   body,
 input,
 select,
@@ -506,13 +505,29 @@ textarea {
     width: 6000px;
   }
   /* Content */
-  p {
-    font-size: 1em;
+  .info {
+    width: 50%;
+    top: 11em;
+    left: auto;
+    right: 0;
+  }
+  h1 {
+    font-size: 4em;
+    line-height: 1.1;
+    padding-bottom: 0.3em;
+  }
+  .list {
+    width: 100%;
+    flex-flow: column nowrap;
+  }
+  .list-item {
+    padding-right: 0;
+  }
+  .linkArea {
+    right: 1em;
   }
 }
-/* Mobile (Portrait) */
-@media screen and (max-width: 480px) {
-  /* BG */
+@media only screen and (max-width: 480px) and (orientation: portrait) {
   @-webkit-keyframes bg {
     0% {
       transform: translate3d(0,0,0);
@@ -533,25 +548,6 @@ textarea {
     background-size: 2000px auto;
     width: 6000px;
   }
-  /* Content */
-  .info {
-    top: 12em;
-    left: auto;
-    right: 0;
-  }
-  h1 {
-    font-size: 3em;
-    line-height: 1;
-    padding-bottom: 0.5em;
-  }
-}
-/* Portrait */
-@media screen and (orientation: portrait) {
-  /* List */
-  .list {
-    width: 100%;
-  }
-  /* Content */
   .info {
     width: 50%;
     top: 12em;
@@ -559,7 +555,18 @@ textarea {
     right: 0;
   }
   h1 {
-    line-height: 1;
-    padding-bottom: 0.5em;
+    font-size: 3.2em;
+    line-height: 1.1;
+    padding-bottom: 0.3em;
+  }
+  .list {
+    width: 100%;
+    flex-flow: column nowrap;
+  }
+  .list-item {
+    padding-right: 0;
+  }
+  .linkArea {
+    right: 1em;
   }
 }/*# sourceMappingURL=main.css.map */
