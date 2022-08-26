@@ -1,191 +1,10 @@
+@import 'libs/reset';
 @import 'libs/vars';
 @import 'libs/functions';
 @import 'libs/mixins';
 @import 'libs/vendor';
 @import 'libs/breakpoints';
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;0,900;1,400;1,500;1,700;1,900&display=swap');
-
-// Breakpoints.
-@include breakpoints((wide: (1281px, 1680px),
-        normal: (737px, 1280px),
-        mobile: (481px, 736px),
-        mobilep: (null, 480px)));
-
-// Mixins.
-@mixin bg($width) {
-    @include keyframes('bg') {
-        0% {
-            @include vendor('transform', 'translate3d(0,0,0)');
-        }
-
-        100% {
-            @include vendor('transform', 'translate3d(#{$width * -1},0,0)');
-        }
-    }
-
-    #bg {
-        background-size: $width auto;
-        width: ($width * 3);
-    }
-}
-
-$delay-wrapper: _duration(wrapper) - 1s;
-$delay-header: 1s;
-$delay-nav-icons: $delay-header+_duration(header) - 1s;
-$delay-nav-icon: 0.25s;
-
-// Reset.
-// Based on meyerweb.com/eric/tools/css/reset (v2.0 | 20110126 | License: public domain)
-html,
-body,
-div,
-span,
-applet,
-object,
-iframe,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p,
-blockquote,
-pre,
-a,
-abbr,
-acronym,
-address,
-big,
-cite,
-code,
-del,
-dfn,
-em,
-img,
-ins,
-kbd,
-q,
-s,
-samp,
-small,
-strike,
-strong,
-sub,
-sup,
-tt,
-var,
-b,
-u,
-i,
-center,
-dl,
-dt,
-dd,
-ol,
-ul,
-li,
-fieldset,
-form,
-label,
-legend,
-table,
-caption,
-tbody,
-tfoot,
-thead,
-tr,
-th,
-td,
-article,
-aside,
-canvas,
-details,
-embed,
-figure,
-figcaption,
-footer,
-header,
-hgroup,
-menu,
-nav,
-output,
-ruby,
-section,
-summary,
-time,
-mark,
-audio,
-video {
-    margin: 0;
-    padding: 0;
-    border: 0;
-    font-size: 100%;
-    font: inherit;
-    vertical-align: baseline;
-}
-
-article,
-aside,
-details,
-figcaption,
-figure,
-footer,
-header,
-hgroup,
-menu,
-nav,
-section {
-    display: block;
-}
-
-body {
-    line-height: 1;
-}
-
-ol,
-ul {
-    list-style: none;
-}
-
-blockquote,
-q {
-    quotes: none;
-
-    &:before,
-    &:after {
-        content: '';
-        content: none;
-    }
-}
-
-table {
-    border-collapse: collapse;
-    border-spacing: 0;
-}
-
-body {
-    -webkit-text-size-adjust: none;
-}
-
-mark {
-    background-color: transparent;
-    color: inherit;
-}
-
-input::-moz-focus-inner {
-    border: 0;
-    padding: 0;
-}
-
-input,
-select,
-textarea {
-    -moz-appearance: none;
-    -webkit-appearance: none;
-    -ms-appearance: none;
-    appearance: none;
-}
 
 /* Basic */
 // Set box model to border-box.
@@ -201,7 +20,7 @@ html {
 }
 
 body {
-    background: _palette(bg);
+    color: $white;
     overflow: hidden;
 
     // Stops initial animations until page loads.
@@ -221,10 +40,9 @@ body,
 input,
 select,
 textarea {
-    color: _palette(fg);
     font-family: 'Roboto', sans-serif;
     font-size: 15pt;
-    line-height: 1.5;
+    line-height: 1.2;
 }
 
 a {
@@ -236,61 +54,69 @@ a {
         border-color: transparent;
     }
 }
+
 /* Text */
-.text{
-	&--black{
-		color:$black
-	}
-	&--normal{
-		font-size: 1em;
-	}
-	&--vertical{
-		position: absolute;
+.text {
+    &--black {
+        color: $black
+    }
+
+    &--normal {
+        font-size: 1em;
+    }
+
+    &--vertical {
+        position: absolute;
         left: -5em;
-		transform: rotate(-90deg);
-	}
+        transform: rotate(-90deg);
+    }
 }
+
 /* Icon */
-.icon{
-    &--mail{
-        background: url(images/iconMail.svg) no-repeat 0 0.5em;
+.icon {
+    &--mail {
+        background: url(../images/iconMail.svg) no-repeat 0 0.5em;
         background-size: 100%;
     }
-    &--LinkedIn{
+
+    &--LinkedIn {
         width: 2.5em;
         height: 2.5em;
-        background: url(images/iconLinkedIn.svg) no-repeat 0 0;
+        background: url(../images/iconLinkedIn.svg) no-repeat 0 0;
         background-size: 100%;
     }
 }
 
 /* Link */
-.link{
-    &--connect{
-        width: 3em;
-        height: 3em;
+.link {
+    &--connect {
+        width: 2.5em;
+        height: 2.5em;
         display: inline-block;
         margin-right: 1.5em;
     }
 }
 
 /* List */
-.list{
+.list {
     width: 50%;
-    display:flex;
+    display: flex;
     flex-flow: row wrap;
 
-    &-item::before{
-        content:'- ';
+    &-item::before {
+        content: '- ';
     }
-    &-item{
+
+    &-item {
         padding-right: 4em;
         font-size: 1.2em;
     }
-    &-item:nth-child(3){
+
+    &-item:nth-child(3) {
         padding-right: 1.4em;
     }
 }
+
 /* Wrapper */
 @include keyframes('wrapper') {
     0% {
@@ -312,7 +138,7 @@ a {
     width: 100%;
 }
 
-/* BG */
+/* Bg */
 #bg {
     @include vendor('animation', 'bg #{_duration(bg)} linear infinite');
     @include vendor('backface-visibility', 'hidden');
@@ -370,53 +196,88 @@ a {
     @include vendor('animation', 'header #{_duration(header)} #{$delay-header} forwards');
     @include vendor('backface-visibility', 'hidden');
     @include vendor('transform', 'translate3d(0,0,0)');
-	width: 90%;
-	position: relative;
-	padding: 30px;
+    width: 90%;
+    position: relative;
+    padding: 30px;
     cursor: default;
     opacity: 0;
-    
+
 }
 
-/* content */
-.content{
-	width: 100%;
-	height: 100%;
-	display: flex;
-	flex-flow: column nowrap;
-	justify-content: center;
-	position: absolute;
-	top: 0;
-	left: 0;
+/* Content */
+.content {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    left: 0;
 }
-h1 {
+
+.h1{
     font-size: 4.35em;
     font-weight: 500;
-	font-style: italic;
-    line-height: 1.5;
+    font-style: italic;
+    
+    &--horizonal { 
+        line-height: 1.5;
+    }
+    &--vertical { 
+        display:none;
+        padding-bottom: 0.2em;
+        line-height: 1.2;
+    }
 }
 
 .logo {
-    width: 240px;
-    height: 96px;
-    background: url(images/logo.svg) no-repeat 0 0;
+    width: 12em;
+    height: 4.8em;
+    background: url(../images/logo.svg) no-repeat 0 0;
     background-size: 100%;
 }
-.info{
-	width: 70%;
+
+.info {
+    width: 70%;
     display: flex;
     flex-flow: column nowrap;
     position: absolute;
     top: 18em;
     left: 10em;
 }
-.linkArea{
+
+.linkArea {
     position: absolute;
     bottom: 5em;
     right: 5em;
 }
-/* Wide 1281-1680*/
-@include breakpoint('<=wide') {
+
+//Breakpoints
+@include respond-between(xl, xxl) {
+    .list {
+        width: 55%;
+    }
+}
+
+@include respond-between(lg, xl) {
+
+    body,
+    input,
+    select,
+    textarea {
+        font-size: 14pt;
+    }
+
+    .list {
+        width: 65%;
+    }
+}
+
+@include respond-between(md, lg) {
+
+    @include bg(_misc(bg-width) * .95);
+
     body,
     input,
     select,
@@ -424,12 +285,20 @@ h1 {
         font-size: 13pt;
     }
 
-    @include bg(_misc(bg-width));
-
+    .list {
+        width: 80%;
+    }
+    .h1{
+        font-size:3.5em;
+    }
+    .linkArea{
+        bottom: 3em;
+        right: 3em;
+    }
 }
 
-/* Normal 737-1280*/
-@include breakpoint('<=normal') {
+@include respond-between(sm, md) {
+
     body,
     input,
     select,
@@ -437,80 +306,121 @@ h1 {
         font-size: 12pt;
     }
 
-    @include bg(_misc(bg-width) * 1);
-
-    h1{
-        line-height: 1;
-        padding-bottom: 0.3em;
+    .h1{
+        &--horizonal{
+            display: none;
+        }
+        &--vertical{
+            display: block;
+        }
     }
 
+    .info{
+        width: 40%;
+        top: 12em;
+        left: auto;
+        right: 0;
+    }
     .list{
-        width: 80%;
+        width: 100%;
+
+        &-item{
+            line-height: 1.5;
+        }
     }
 
+    
 }
 
-/* Mobile 481-736*/ 
-@include breakpoint('<=mobile') {
+@include respond-below(sm){
     body,
     input,
     select,
     textarea {
-        font-size: 11pt;
+        font-size: 12pt;
     }
-
-    /* BG */
-    @include bg(_misc(bg-width) * 1);
-
-    /* Content */
-    .info{
-        width: 50%;
-        top: 11em;
-        left: auto;
-        right: 0;
-    }
-    h1 {
-        font-size: 4em;
-        line-height: 1.1;
-        padding-bottom: 0.3em;
-    }
-    .list{
-        width: 100%;
-        flex-flow: column nowrap;
-        &-item{
-            padding-right: 0;
-        }
-    }
-    .linkArea{
-        right:1em;
-    }
-
-}
-
-@media only screen and (max-width: 480px) and (orientation: portrait) {
-
-    @include bg(_misc(bg-width) * 1);
-
     .info{
         width: 50%;
         top: 12em;
         left: auto;
         right: 0;
     }
-    h1 {
-        font-size: 3.2em;
-        line-height: 1.1;
-        padding-bottom: 0.3em;
+    .h1{
+        font-size:3.5em;
+        line-height: 1.2;
     }
     .list{
         width: 100%;
-        flex-flow: column nowrap;
-        &-item{
-            padding-right: 0;
-        }
     }
     .linkArea{
-        right:1em;
+        width: 100%;
+        right: auto;
+        bottom: 2.5em;
+        text-align:center;
     }
-    
 }
+
+// /* Mobile 481-736*/ 
+// @include breakpoint('<=mobile') {
+//     body,
+//     input,
+//     select,
+//     textarea {
+//         font-size: 11pt;
+//     }
+
+//     /* BG */
+//     @include bg(_misc(bg-width) * 1);
+
+//     /* Content */
+//     .info{
+//         width: 50%;
+//         top: 11em;
+//         left: auto;
+//         right: 0;
+//     }
+//     h1 {
+//         font-size: 4em;
+//         line-height: 1.1;
+//         padding-bottom: 0.3em;
+//     }
+//     .list{
+//         width: 100%;
+//         flex-flow: column nowrap;
+//         &-item{
+//             padding-right: 0;
+//         }
+//     }
+//     .linkArea{
+//         right:1em;
+//     }
+
+// }
+
+// @media only screen and (max-width: 480px) and (orientation: portrait) {
+
+//     @include bg(_misc(bg-width) * 1);
+
+//     .info{
+//         width: 50%;
+//         top: 12em;
+//         left: auto;
+//         right: 0;
+//     }
+//     h1 {
+//         font-size: 3.2em;
+//         line-height: 1.1;
+//         padding-bottom: 0.3em;
+//     }
+//     .list{
+//         width: 100%;
+//         flex-flow: column nowrap;
+//         &-item{
+//             padding-right: 0;
+//         }
+//     }
+//     .linkArea{
+//         right:1em;
+//     }
+
+// }

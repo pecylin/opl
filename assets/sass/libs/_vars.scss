@@ -1,5 +1,5 @@
 // Misc.
-$misc: (bg: #fee4d3 url("images/bg.jpg") bottom left,
+$misc: (bg: #fee4d3 url("../images/bg.jpg") bottom left,
     bg-width: 2000px);
 
 // Duration.
@@ -8,15 +8,6 @@ $duration: (bg: 60s,
     overlay: 1.5s,
     header: 1s,
     nav-icons: 0.5s);
-
-// Palette.
-$palette: (
-	bg: #fff,
-    fg: #fff,
-    nav-icon: (hover-bg: rgba(255, 255, 255, 0.175),
-        hover-fg: #fff,
-        active-bg: rgba(255, 255, 255, 0.35),
-        active-fg: #fff));
 
 //Color
 $white : #fff;
